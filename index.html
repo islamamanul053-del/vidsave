@@ -655,8 +655,12 @@
         })
       });
 
-      if (!res.ok) { showError(`সার্ভার সমস্যা (${res.status})`); return; }
-      handleResult(await res.json());
+      const data = await res.json();
+      if (!res.ok || data.status === 'error') {
+        showError(data?.error?.text || `সার্ভার সমস্যা (${res.status})`);
+        return;
+      }
+      handleResult(data);
     } catch {
       showError('নেটওয়ার্ক সংযোগ সমস্যা। আবার চেষ্টা করুন।');
     } finally { resetBtn(); }
