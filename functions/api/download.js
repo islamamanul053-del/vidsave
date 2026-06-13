@@ -44,7 +44,7 @@ export async function onRequestPost({ request }) {
       },
       body: JSON.stringify({
         url,
-        videoQuality      : videoQuality === 'max' ? '9000' : videoQuality,
+        videoQuality      : videoQuality,
         audioFormat,
         audioBitrate,
         downloadMode,
@@ -57,7 +57,7 @@ export async function onRequestPost({ request }) {
     });
 
     const data = await cobaltRes.json();
-    return json(data, cobaltRes.ok ? 200 : cobaltRes.status);
+    return json(data);
 
   } catch (err) {
     if (err.name === 'TimeoutError') {
