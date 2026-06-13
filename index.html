@@ -689,9 +689,10 @@
       (d.picker || []).forEach((item, i) => {
         const row = document.createElement('div');
         row.className = 'dl-item';
+        const label = item.type ? item.type.toUpperCase() : `ভিডিও ${i+1}`;
         row.innerHTML = `
           <div class="dl-left">
-            <span class="dl-badge">${(item.type||'ভিডিও').toUpperCase()} ${i+1}</span>
+            <span class="dl-badge">${label}</span>
             <span class="dl-fname">বিকল্প ${i+1}</span>
           </div>
           <a href="${item.url}" download class="dl-btn" target="_blank" rel="noopener">↓ সেভ করুন</a>`;
